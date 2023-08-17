@@ -31,37 +31,52 @@ struct ContentView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 90.0)
                 
+                Spacer()
+            }
             Spacer()
-            }
-            
-            
             VStack {
-                Text("Fast Facts")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.blue)
-                    .padding(30)
+                NavigationStack{
+                    HStack{
+                        NavigationLink(destination: Resources()){Text("Resources")
+                            .padding(.horizontal, 25)}
+                        Spacer()
+                        NavigationLink(destination: Journal())
+                        {Text("Journal")}
+                            .padding(.horizontal, 25)
+                        Spacer()
+                        NavigationLink(destination: Timer())
+                        {Text("Timer")}
+                            .padding(.horizontal, 25)
+                    }
+                    Spacer()
+                    Text("Fast Facts")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.blue)
+                        .padding(30)
+                    Image("fact1")
+                        .resizable(resizingMode:.stretch)
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(20)
+                    Spacer()
+                    Spacer()
+                    Text(factText)
+                    Button("Button"){
+                        var fact = randomFacts.randomElement()!
+                        factText = fact
+                    }.buttonStyle(.borderedProminent)
+                        .padding()
+                }
                 Spacer()
-                Image("fact1")
-                    .resizable(resizingMode:.stretch)
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(20)
-                Spacer()
-        Text(factText)
-                Button("Button"){
-                    var fact = randomFacts.randomElement()!
-                    factText = fact
-                }.buttonStyle(.borderedProminent)
-                    .padding()
+                
+                //MindfulMe provides students with resources for dealing with mental health problems and limiting stress from school.")
             }
-            
-            
-
-            //MindfulMe provides students with resources for dealing with mental health problems and limiting stress from school.")
         }
         .padding()
     }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
